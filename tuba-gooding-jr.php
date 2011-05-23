@@ -1,7 +1,7 @@
 <?php
 $buddy = $argv[1];
 $message = $argv[2];
-$badBuddies = array('buddyhandle1', 'buddyhandle2');
+$badBuddies = array('buddyname1', 'buddyname2');
 
 if (in_array($buddy, $badBuddies)) {
 	// does it have a youtube link?

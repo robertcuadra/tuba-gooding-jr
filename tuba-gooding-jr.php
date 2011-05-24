@@ -1,27 +1,30 @@
 <?php
 $buddy = $argv[1];
 $message = $argv[2];
-$badBuddies = array('buddyname1', 'buddyname2');
+//$badBuddies = array('buddyname1', 'buddyname2');
+$badBuddies = array('robert@cuadradevelopment.com', 'markhyat', 'joedevon99', 'snaggleness', 'jackobo007', 'jenikakurtz@gmail.com');
 
 if (in_array($buddy, $badBuddies)) {
 	// does it have a youtube link?
-	if (preg_match("#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=[0-9]/)[^&\n]+|(?<=v=)[^&\n]+#", $message, $matches)) {
+	if (preg_match("#youtube\.com\/watch\?v=([\w-]{11})#", $message, $matches)) {
 		// grab the video info
-		$comments = simplexml_load_file('http://gdata.youtube.com/feeds/api/videos/' . $matches[0] . '/comments');
+		$comments = simplexml_load_file('http://gdata.youtube.com/feeds/api/videos/' . $matches[1] . '/comments');
 
 		// pick a random one
 		$idx = rand(0, 25);
 
 		$comment = $comments->entry[$idx]->content;
 
-		// if it's a reply, find another
-		if (stristr($comment, '@')) {
+		// if it's a reply, find another. limit the loop to 25 tries
+		$count = 0;
+		while (stristr($comment, '@') && $count < 25) {
 			$oldIdx = $idx;
 			while ($oldIdx == $idx) {
 				$idx = rand(0, 25);
 			}
 
 			$comment = $comments->entry[$idx]->content;
+			$count++;
 		}
 
 		echo $comment;

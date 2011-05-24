@@ -1,4 +1,4 @@
-Tuba Gooding Jr is an AIM autoresponder for YouTube links.
+Tuba Gooding Jr is an iChat autoresponder for YouTube links.
 ---
 It finds youtube links in an incoming IM and responds with a random comment from the video page for faux relevance.
 

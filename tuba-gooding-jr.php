@@ -2,7 +2,7 @@
 $buddy = $argv[1];
 $message = $argv[2];
 //$badBuddies = array('buddyname1', 'buddyname2');
-$badBuddies = array('robert@cuadradevelopment.com', 'markhyat', 'joedevon99', 'snaggleness', 'jackobo007', 'jenikakurtz@gmail.com');
+$badBuddies = array('badbuddy1', 'badbuddy2');
 
 if (in_array($buddy, $badBuddies)) {
 	// does it have a youtube link?

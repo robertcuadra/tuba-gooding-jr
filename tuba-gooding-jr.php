@@ -1,14 +1,13 @@
 <?php
 $buddy = $argv[1];
 $message = $argv[2];
-//$badBuddies = array('buddyname1', 'buddyname2');
-$badBuddies = array('badbuddy1', 'badbuddy2');
+$badBuddies = array('buddyname1', 'buddyname2');
 
 if (in_array($buddy, $badBuddies)) {
 	// does it have a youtube link?
-	if (preg_match("#youtube\.com\/watch\?v=([\w-]{11})#", $message, $matches)) {
+	if (preg_match("/(?:www\.)?(?:youtube.com|youtu.be)\/(?:([\w-]{11})|watch\?v=([\w-]{11}))/", $message, $matches)) {
 		// grab the video info
-		$comments = simplexml_load_file('http://gdata.youtube.com/feeds/api/videos/' . $matches[1] . '/comments');
+		$comments = simplexml_load_file('http://gdata.youtube.com/feeds/api/videos/' . $matches[count($matches) - 1] . '/comments');
 
 		// pick a random one
 		$idx = rand(0, 25);
